@@ -604,6 +604,84 @@
             font-style: italic;
         }
 
+        /* Feature blocks grid */
+        .feature-blocks {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            padding: 20px;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .feature-block {
+            background: #F8F8F6;
+            border: 1px solid var(--deep-charcoal);
+            border-radius: 0;
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 12px;
+            min-height: 120px;
+        }
+
+        .feature-block-icon {
+            font-size: 32px;
+            line-height: 1;
+        }
+
+        .feature-block-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--deep-charcoal);
+            line-height: 1.3;
+        }
+
+        body.drawer-open .feature-blocks {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            max-width: 100%;
+        }
+
+        body.drawer-open .feature-block {
+            padding: 16px 12px;
+            min-height: 90px;
+        }
+
+        body.drawer-open .feature-block-icon {
+            font-size: 24px;
+        }
+
+        body.drawer-open .feature-block-label {
+            font-size: 9px;
+        }
+
+        @media (max-width: 768px) {
+            .feature-blocks {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+                max-width: 100%;
+            }
+
+            .feature-block {
+                padding: 16px 12px;
+                min-height: 90px;
+            }
+
+            .feature-block-icon {
+                font-size: 24px;
+            }
+
+            .feature-block-label {
+                font-size: 9px;
+            }
+        }
+
         /* Replay Button */
         .replay-btn {
             position: absolute;
@@ -1005,6 +1083,286 @@
             line-height: 1.6;
             color: #555;
             padding-top: 6px;
+        }
+
+        /* Stat Card - neo-brutalist style */
+        .stat-card {
+            background: #F8F8F6;
+            border: 1px solid var(--deep-charcoal);
+            padding: 28px;
+        }
+
+        .stat-card-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--deep-charcoal);
+            margin-bottom: 8px;
+        }
+
+        .stat-card-source {
+            font-size: 14px;
+            color: #888;
+        }
+
+        /* Problem Section */
+        .problem-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--deep-charcoal);
+            margin-bottom: 32px;
+            line-height: 1.3;
+        }
+
+        .problem-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .problem-column-header {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--deep-charcoal);
+            margin-bottom: 12px;
+        }
+
+        .problem-column-list {
+            list-style: disc;
+            padding-left: 18px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .problem-column-list li {
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .problem-columns {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        /* Problem Illustration Image */
+        .problem-illustration-image {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .illustration-img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Solution Section */
+        .solution-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--deep-charcoal);
+            margin-bottom: 32px;
+            line-height: 1.3;
+        }
+
+        .solution-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .solution-column-header {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--deep-charcoal);
+            margin-bottom: 12px;
+        }
+
+        .solution-column-list {
+            list-style: disc;
+            padding-left: 18px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .solution-column-list li {
+            margin-bottom: 8px;
+        }
+
+        /* Role Section */
+        .role-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--deep-charcoal);
+            margin-bottom: 32px;
+            line-height: 1.3;
+        }
+
+        .role-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .role-column-header {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--deep-charcoal);
+            margin-bottom: 12px;
+        }
+
+        .role-column-list {
+            list-style: disc;
+            padding-left: 18px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .role-column-list li {
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .role-columns {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        .role-image-container {
+            margin-top: 32px;
+        }
+
+        .role-img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Tab Component */
+        .solution-tabs {
+            margin-top: 32px;
+        }
+
+        .tabs-controls {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        /* Segment Control - neo-brutalist */
+        .segment-control {
+            display: flex;
+            border: 1px solid var(--deep-charcoal);
+        }
+
+        .segment-btn {
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 500;
+            background: white;
+            border: none;
+            border-right: 1px solid var(--deep-charcoal);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--deep-charcoal);
+        }
+
+        .segment-btn:last-child {
+            border-right: none;
+        }
+
+        .segment-btn:hover {
+            background: #F5F5F5;
+        }
+
+        .segment-btn.active {
+            background: var(--deep-charcoal);
+            color: white;
+        }
+
+        /* Toggle Group - minimal style */
+        .toggle-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .toggle-group.hidden {
+            display: none;
+        }
+
+        .toggle-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            font-size: 13px;
+            font-weight: 500;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: #888;
+            transition: all 0.2s ease;
+        }
+
+        .toggle-btn:hover {
+            color: var(--deep-charcoal);
+        }
+
+        .toggle-btn.active {
+            color: var(--deep-charcoal);
+        }
+
+        .toggle-btn.active .toggle-label {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .toggle-icon {
+            font-size: 16px;
+        }
+
+        .toggle-label {
+            font-size: 13px;
+        }
+
+        .tab-contents {
+            margin-top: 24px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-image {
+            width: 100%;
+            max-width: 100%;
+            border: 1px solid #E5E5E5;
+            border-radius: 0;
+        }
+
+        @media (max-width: 768px) {
+            .solution-columns {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .tabs-controls {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
         }
 
         /* ================================ */
@@ -1425,9 +1783,11 @@
                                     <span class="meta-dash"></span>
                                     <span>2013–2018 • MicroStrategy</span>
                                 </div>
-                                <h2 class="headline">Make <strong>data modeling intuitive</strong></h2>
-                                <p class="description">Transformed complex SQL operations into visual interfaces. Built systems where business users could create sophisticated dashboards without writing code, democratizing data access across organizations.</p>
+                                <h2 class="headline">Make <strong>dashboard building and data modeling intuitive</strong></h2>
+                                <p class="description">Transformed complex SQL operations into visual interfaces. Built systems where business users could create sophisticated dashboards without writing code.</p>
                                 <div class="tags">
+                                    <span class="tag">No code</span>
+                                    <span class="tag">Drag and drop dashboards</span>
                                     <span class="tag">Data analyst / architects</span>
                                     <span class="tag">Self-Service BI</span>
                                 </div>
@@ -1475,9 +1835,9 @@
                                 <h2 class="headline">Make <strong>data insights <em>find</em> people</strong></h2>
                                 <p class="description">Pioneered zero-click intelligence where insights surface contextually in workflows. No more dashboard hunting — relevant data finds users exactly when they need it.</p>
                                 <div class="tags">
+                                    <span class="tag">Non-data Expert</span>
                                     <span class="tag">Contextual Insights</span>
                                     <span class="tag">Zero Click Analytics</span>
-                                    <span class="tag">Non-data Expert</span>
                                 </div>
                                 <div class="dot-pattern">
                                     <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
@@ -1534,7 +1894,7 @@
                                     <span>2020–2022 • SigmaComputing</span>
                                 </div>
                                 <h2 class="headline">Make <strong>data analysis approachable</strong></h2>
-                                <p class="description">Democratized data analysis with spreadsheet interface that runs on top of live warehouse data. Familiar paradigm, enterprise power.</p>
+                                <p class="description">Democratized data analysis with spreadsheet interface that runs on top of live warehouse data.</p>
                                 <div class="tags">
                                     <span class="tag">Business users</span>
                                     <span class="tag">True self-service</span>
@@ -1546,7 +1906,28 @@
                                 </div>
                             </div>
                             <div class="cards-area">
-                                <div class="cards-placeholder">Case study visuals coming soon...</div>
+                                <div class="feature-blocks">
+                                    <div class="feature-block">
+                                        <span class="feature-block-icon">🤝</span>
+                                        <span class="feature-block-label">Live Collaboration</span>
+                                    </div>
+                                    <div class="feature-block">
+                                        <span class="feature-block-icon">📈</span>
+                                        <span class="feature-block-label">Growth Design</span>
+                                    </div>
+                                    <div class="feature-block">
+                                        <span class="feature-block-icon">🔗</span>
+                                        <span class="feature-block-label">Data Lineage</span>
+                                    </div>
+                                    <div class="feature-block">
+                                        <span class="feature-block-icon">🔄</span>
+                                        <span class="feature-block-label">Data Swapping</span>
+                                    </div>
+                                    <div class="feature-block">
+                                        <span class="feature-block-icon">👋</span>
+                                        <span class="feature-block-label">Onboarding Experience</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1647,7 +2028,28 @@
                                 </div>
                             </div>
                             <div class="cards-area">
-                                <div class="cards-placeholder">Case study visuals coming soon...</div>
+                                <div class="feature-blocks">
+                                    <div class="feature-block">
+                                        <span class="feature-block-icon">🛠️</span>
+                                        <span class="feature-block-label">AI Builder</span>
+                                    </div>
+                                    <div class="feature-block">
+                                        <span class="feature-block-icon">💬</span>
+                                        <span class="feature-block-label">Chat Experience</span>
+                                    </div>
+                                    <div class="feature-block">
+                                        <span class="feature-block-icon">🤖</span>
+                                        <span class="feature-block-label">Agents Framework</span>
+                                    </div>
+                                    <div class="feature-block">
+                                        <span class="feature-block-icon">⚡</span>
+                                        <span class="feature-block-label">AI Enabled Functions</span>
+                                    </div>
+                                    <div class="feature-block">
+                                        <span class="feature-block-icon">🔍</span>
+                                        <span class="feature-block-label">AI Query</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1718,21 +2120,88 @@
                 ]
             },
             '2018': {
-                title: '2018: Contextual Insights',
+                title: 'Make data insights find people',
+                eyebrow: '2018 • MicroStrategy • HyperIntelligence',
                 sections: [
                     {
                         type: 'text',
                         label: 'The Challenge',
-                        content: 'By 2018, we realized that building better dashboards wasn\'t enough. The average business user didn\'t have time to go looking for data. Adoption was stalling because the "pull" model of analytics required too much intent.'
+                        content: 'Analytics teams generate valuable insights, but most end users don\'t engage with them. With enterprise analytics adoption hovering around 30%, data often fails to show up where decisions are actually made—resulting in wasted effort and declining trust in analytics.'
                     },
                     {
-                        type: 'feature',
-                        title: 'Zero-Click Philosophy',
-                        description: 'We shifted the paradigm from "Users find data" to "Data finds users." This meant embedding micro-visualizations directly into the tools people already use—Slack, Email, and internal CRM systems.',
-                        features: [
-                            { icon: '⚡', label: 'Proactive Alerts' },
-                            { icon: '📍', label: 'In-Situ Metrics' }
-                        ]
+                        type: 'stat-card',
+                        stat: 'Enterprise analytics adoption is only around 30%.',
+                        source: '— from Gartner report'
+                    },
+                    {
+                        type: 'problem',
+                        label: 'The user problem',
+                        title: 'The cognitive effort outweighs the value',
+                        columns: [
+                            {
+                                header: 'Time-consuming',
+                                items: ['loading...', 'find THE cell from millions, and 5 pages']
+                            },
+                            {
+                                header: 'Requires expertise',
+                                items: ['🥴 what people see → Scatter plot, Dual axis chart', '🥳 what people can understand → KPI, ring']
+                            },
+                            {
+                                header: 'Scattered information',
+                                items: ['I need to see the dashboard while looking at sheet, salesforce, etc. app.']
+                            }
+                        ],
+                        illustrationImage: 'images/image-21.png'
+                    },
+                    {
+                        type: 'solution',
+                        label: 'The solution',
+                        title: 'Let data insights find people instead of hunting',
+                        columns: [
+                            {
+                                header: 'Contextual',
+                                items: ['it hints when data available', 'relevant insights only about "this" data point']
+                            },
+                            {
+                                header: 'Simple',
+                                items: ['straightforward data presentation for grade 6+']
+                            },
+                            {
+                                header: 'Frictionless',
+                                items: ['data insights overlay all web pages, not only apps']
+                            }
+                        ],
+                        tabs: {
+                            segments: ['Consumption', 'Authoring'],
+                            consumption: [
+                                { id: 'web', label: 'Web', icon: '🌐', image: 'images/image-02.png' },
+                                { id: 'outlook', label: 'Outlook', icon: '📧', image: 'images/image-03.png' },
+                                { id: 'mobile', label: 'Mobile', icon: '📱', image: 'images/image-04.png' }
+                            ],
+                            authoring: [
+                                { id: 'authoring', label: 'Authoring', icon: '✏️', image: 'images/image-05.png' }
+                            ]
+                        }
+                    },
+                    {
+                        type: 'role',
+                        label: 'My role',
+                        title: 'Founding designer → Design lead → Design manager + IC',
+                        columns: [
+                            {
+                                header: 'Product',
+                                items: ['product: 0 → 1 → 70 (if full range is 0-100)', 'product line: Web → 4 platforms']
+                            },
+                            {
+                                header: 'Design team',
+                                items: ['IC Sole designer → IC + manage a team of 4 across various platforms']
+                            },
+                            {
+                                header: 'Team expansion',
+                                items: ['team: 1 PM + 1 Senior Eng + me → 80 people across 4 products']
+                            }
+                        ],
+                        image: 'images/image-22.png'
                     },
                     {
                         type: 'outcomes',
@@ -1858,6 +2327,120 @@
                             </div>
                         </div>
                     `;
+                } else if (section.type === 'stat-card') {
+                    html += `
+                        <div class="drawer-section">
+                            <div class="stat-card">
+                                <p class="stat-card-text">${section.stat}</p>
+                                <p class="stat-card-source">${section.source}</p>
+                            </div>
+                        </div>
+                    `;
+                } else if (section.type === 'problem') {
+                    let illustrationHtml = '';
+                    if (section.illustrationImage) {
+                        illustrationHtml = `
+                            <div class="problem-illustration-image">
+                                <img src="${section.illustrationImage}" alt="Illustration" class="illustration-img">
+                            </div>
+                        `;
+                    }
+                    html += `
+                        <div class="drawer-section">
+                            <p class="drawer-section-label">${section.label}</p>
+                            <h3 class="problem-title">${section.title}</h3>
+                            <div class="problem-columns">
+                                ${section.columns.map(col => `
+                                    <div class="problem-column">
+                                        <h4 class="problem-column-header">${col.header}</h4>
+                                        <ul class="problem-column-list">
+                                            ${col.items.map(item => `<li>${item}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            ${illustrationHtml}
+                        </div>
+                    `;
+                } else if (section.type === 'role') {
+                    const roleImageHtml = section.image ? `
+                        <div class="role-image-container">
+                            <img src="${section.image}" alt="Role illustration" class="role-img">
+                        </div>
+                    ` : '';
+                    html += `
+                        <div class="drawer-section">
+                            <p class="drawer-section-label">${section.label}</p>
+                            <h3 class="role-title">${section.title}</h3>
+                            <div class="role-columns">
+                                ${section.columns.map(col => `
+                                    <div class="role-column">
+                                        <h4 class="role-column-header">${col.header}</h4>
+                                        <ul class="role-column-list">
+                                            ${col.items.map(item => `<li>${item}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            ${roleImageHtml}
+                        </div>
+                    `;
+                } else if (section.type === 'solution') {
+                    let tabsHtml = '';
+                    if (section.tabs && section.tabs.segments) {
+                        const allTabs = [...section.tabs.consumption, ...section.tabs.authoring];
+                        tabsHtml = `
+                            <div class="solution-tabs" data-active-segment="consumption">
+                                <div class="tabs-controls">
+                                    <div class="segment-control">
+                                        ${section.tabs.segments.map((seg, i) => `
+                                            <button class="segment-btn ${i === 0 ? 'active' : ''}" data-segment="${seg.toLowerCase()}">${seg}</button>
+                                        `).join('')}
+                                    </div>
+                                    <div class="toggle-group" data-segment="consumption">
+                                        ${section.tabs.consumption.map((tab, i) => `
+                                            <button class="toggle-btn ${i === 0 ? 'active' : ''}" data-tab="${tab.id}">
+                                                <span class="toggle-icon">${tab.icon}</span>
+                                                <span class="toggle-label">${tab.label}</span>
+                                            </button>
+                                        `).join('')}
+                                    </div>
+                                    <div class="toggle-group hidden" data-segment="authoring">
+                                        ${section.tabs.authoring.map((tab, i) => `
+                                            <button class="toggle-btn ${i === 0 ? 'active' : ''}" data-tab="${tab.id}">
+                                                <span class="toggle-icon">${tab.icon}</span>
+                                                <span class="toggle-label">${tab.label}</span>
+                                            </button>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                                <div class="tab-contents">
+                                    ${allTabs.map((tab, i) => `
+                                        <div class="tab-content ${i === 0 ? 'active' : ''}" data-tab="${tab.id}">
+                                            <img src="${tab.image}" alt="${tab.label}" class="tab-image">
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }
+                    html += `
+                        <div class="drawer-section">
+                            <p class="drawer-section-label">${section.label}</p>
+                            <h3 class="solution-title">${section.title}</h3>
+                            <div class="solution-columns">
+                                ${section.columns.map(col => `
+                                    <div class="solution-column">
+                                        <h4 class="solution-column-header">${col.header}</h4>
+                                        <ul class="solution-column-list">
+                                            ${col.items.map(item => `<li>${item}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            ${tabsHtml}
+                        </div>
+                    `;
                 } else if (section.type === 'outcomes') {
                     html += `
                         <div class="drawer-section">
@@ -1902,6 +2485,14 @@
             document.getElementById('drawerTitle').textContent = data.title;
             document.getElementById('drawerBody').innerHTML = buildDrawerContent(cardId);
 
+            // Set eyebrow if available
+            const drawerLabel = document.querySelector('.drawer-label');
+            if (data.eyebrow) {
+                drawerLabel.textContent = data.eyebrow;
+            } else {
+                drawerLabel.textContent = 'Deep Dive';
+            }
+
             // Remove active from all cards, then add to current
             document.querySelectorAll('.milestone-card.clickable').forEach(c => c.classList.remove('active'));
             const activeCard = document.getElementById('card' + cardId);
@@ -1925,6 +2516,53 @@
         });
         document.getElementById('drawerClose').addEventListener('click', closeDrawer);
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+        // Tab switching functionality (using event delegation)
+        document.getElementById('drawer').addEventListener('click', function(e) {
+            // Segment control switching
+            if (e.target.classList.contains('segment-btn')) {
+                const segment = e.target.dataset.segment;
+                const tabsContainer = e.target.closest('.solution-tabs');
+
+                // Update segment buttons
+                tabsContainer.querySelectorAll('.segment-btn').forEach(btn => btn.classList.remove('active'));
+                e.target.classList.add('active');
+
+                // Show/hide toggle groups
+                tabsContainer.querySelectorAll('.toggle-group').forEach(group => {
+                    if (group.dataset.segment === segment) {
+                        group.classList.remove('hidden');
+                        // Auto-select first toggle in this group and show its content
+                        const firstToggle = group.querySelector('.toggle-btn');
+                        if (firstToggle) {
+                            tabsContainer.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
+                            firstToggle.classList.add('active');
+                            const tabId = firstToggle.dataset.tab;
+                            tabsContainer.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                            tabsContainer.querySelector(`.tab-content[data-tab="${tabId}"]`).classList.add('active');
+                        }
+                    } else {
+                        group.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Toggle button switching
+            if (e.target.classList.contains('toggle-btn') || e.target.closest('.toggle-btn')) {
+                const btn = e.target.classList.contains('toggle-btn') ? e.target : e.target.closest('.toggle-btn');
+                const tabId = btn.dataset.tab;
+                const tabsContainer = btn.closest('.solution-tabs');
+
+                // Update toggle buttons in the visible group only
+                const activeGroup = tabsContainer.querySelector('.toggle-group:not(.hidden)');
+                activeGroup.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Update content
+                tabsContainer.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                tabsContainer.querySelector(`.tab-content[data-tab="${tabId}"]`).classList.add('active');
+            }
+        });
 
         // Play animation for 2022 card
         function playAnimation2022() {
