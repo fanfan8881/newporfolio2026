@@ -1243,15 +1243,20 @@
             margin-top: 32px;
         }
 
-        .tab-buttons {
+        .tabs-controls {
             display: flex;
-            gap: 0;
-            border: 1px solid var(--deep-charcoal);
-            width: fit-content;
+            align-items: center;
+            gap: 24px;
         }
 
-        .tab-btn {
-            padding: 12px 20px;
+        /* Segment Control - neo-brutalist */
+        .segment-control {
+            display: flex;
+            border: 1px solid var(--deep-charcoal);
+        }
+
+        .segment-btn {
+            padding: 10px 20px;
             font-size: 13px;
             font-weight: 500;
             background: white;
@@ -1262,17 +1267,62 @@
             color: var(--deep-charcoal);
         }
 
-        .tab-btn:last-child {
+        .segment-btn:last-child {
             border-right: none;
         }
 
-        .tab-btn:hover {
+        .segment-btn:hover {
             background: #F5F5F5;
         }
 
-        .tab-btn.active {
+        .segment-btn.active {
             background: var(--deep-charcoal);
             color: white;
+        }
+
+        /* Toggle Group - minimal style */
+        .toggle-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .toggle-group.hidden {
+            display: none;
+        }
+
+        .toggle-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            font-size: 13px;
+            font-weight: 500;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: #888;
+            transition: all 0.2s ease;
+        }
+
+        .toggle-btn:hover {
+            color: var(--deep-charcoal);
+        }
+
+        .toggle-btn.active {
+            color: var(--deep-charcoal);
+        }
+
+        .toggle-btn.active .toggle-label {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .toggle-icon {
+            font-size: 16px;
+        }
+
+        .toggle-label {
+            font-size: 13px;
         }
 
         .tab-contents {
@@ -1291,7 +1341,7 @@
             width: 100%;
             max-width: 100%;
             border: 1px solid #E5E5E5;
-            border-radius: 8px;
+            border-radius: 0;
         }
 
         @media (max-width: 768px) {
@@ -1299,17 +1349,10 @@
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
-            .tab-buttons {
-                flex-wrap: wrap;
-                width: 100%;
-            }
-            .tab-btn {
-                flex: 1;
-                min-width: 45%;
-                border-bottom: 1px solid var(--deep-charcoal);
-            }
-            .tab-btn:nth-child(2) {
-                border-right: none;
+            .tabs-controls {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
             }
         }
 
@@ -2119,12 +2162,17 @@
                                 items: ['data insights overlay all web pages, not only apps']
                             }
                         ],
-                        tabs: [
-                            { id: 'web', label: 'On web', image: 'images/image-02.png' },
-                            { id: 'outlook', label: 'In Outlook', image: 'images/image-03.png' },
-                            { id: 'mobile', label: 'On mobile', image: 'images/image-04.png' },
-                            { id: 'authoring', label: 'On Authoring', image: 'images/image-05.png' }
-                        ]
+                        tabs: {
+                            segments: ['Consumption', 'Authoring'],
+                            consumption: [
+                                { id: 'web', label: 'Web', icon: '🌐', image: 'images/image-02.png' },
+                                { id: 'outlook', label: 'Outlook', icon: '📧', image: 'images/image-03.png' },
+                                { id: 'mobile', label: 'Mobile', icon: '📱', image: 'images/image-04.png' }
+                            ],
+                            authoring: [
+                                { id: 'authoring', label: 'Authoring', icon: '✏️', image: 'images/image-05.png' }
+                            ]
+                        }
                     },
                     {
                         type: 'role',
@@ -2322,22 +2370,44 @@
                         </div>
                     `;
                 } else if (section.type === 'solution') {
-                    const tabsHtml = section.tabs ? `
-                        <div class="solution-tabs">
-                            <div class="tab-buttons">
-                                ${section.tabs.map((tab, i) => `
-                                    <button class="tab-btn ${i === 0 ? 'active' : ''}" data-tab="${tab.id}">${tab.label}</button>
-                                `).join('')}
-                            </div>
-                            <div class="tab-contents">
-                                ${section.tabs.map((tab, i) => `
-                                    <div class="tab-content ${i === 0 ? 'active' : ''}" data-tab="${tab.id}">
-                                        <img src="${tab.image}" alt="${tab.label}" class="tab-image">
+                    let tabsHtml = '';
+                    if (section.tabs && section.tabs.segments) {
+                        const allTabs = [...section.tabs.consumption, ...section.tabs.authoring];
+                        tabsHtml = `
+                            <div class="solution-tabs" data-active-segment="consumption">
+                                <div class="tabs-controls">
+                                    <div class="segment-control">
+                                        ${section.tabs.segments.map((seg, i) => `
+                                            <button class="segment-btn ${i === 0 ? 'active' : ''}" data-segment="${seg.toLowerCase()}">${seg}</button>
+                                        `).join('')}
                                     </div>
-                                `).join('')}
+                                    <div class="toggle-group" data-segment="consumption">
+                                        ${section.tabs.consumption.map((tab, i) => `
+                                            <button class="toggle-btn ${i === 0 ? 'active' : ''}" data-tab="${tab.id}">
+                                                <span class="toggle-icon">${tab.icon}</span>
+                                                <span class="toggle-label">${tab.label}</span>
+                                            </button>
+                                        `).join('')}
+                                    </div>
+                                    <div class="toggle-group hidden" data-segment="authoring">
+                                        ${section.tabs.authoring.map((tab, i) => `
+                                            <button class="toggle-btn ${i === 0 ? 'active' : ''}" data-tab="${tab.id}">
+                                                <span class="toggle-icon">${tab.icon}</span>
+                                                <span class="toggle-label">${tab.label}</span>
+                                            </button>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                                <div class="tab-contents">
+                                    ${allTabs.map((tab, i) => `
+                                        <div class="tab-content ${i === 0 ? 'active' : ''}" data-tab="${tab.id}">
+                                            <img src="${tab.image}" alt="${tab.label}" class="tab-image">
+                                        </div>
+                                    `).join('')}
+                                </div>
                             </div>
-                        </div>
-                    ` : '';
+                        `;
+                    }
                     html += `
                         <div class="drawer-section">
                             <p class="drawer-section-label">${section.label}</p>
@@ -2433,13 +2503,44 @@
 
         // Tab switching functionality (using event delegation)
         document.getElementById('drawer').addEventListener('click', function(e) {
-            if (e.target.classList.contains('tab-btn')) {
-                const tabId = e.target.dataset.tab;
+            // Segment control switching
+            if (e.target.classList.contains('segment-btn')) {
+                const segment = e.target.dataset.segment;
                 const tabsContainer = e.target.closest('.solution-tabs');
 
-                // Update buttons
-                tabsContainer.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                // Update segment buttons
+                tabsContainer.querySelectorAll('.segment-btn').forEach(btn => btn.classList.remove('active'));
                 e.target.classList.add('active');
+
+                // Show/hide toggle groups
+                tabsContainer.querySelectorAll('.toggle-group').forEach(group => {
+                    if (group.dataset.segment === segment) {
+                        group.classList.remove('hidden');
+                        // Auto-select first toggle in this group and show its content
+                        const firstToggle = group.querySelector('.toggle-btn');
+                        if (firstToggle) {
+                            tabsContainer.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
+                            firstToggle.classList.add('active');
+                            const tabId = firstToggle.dataset.tab;
+                            tabsContainer.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                            tabsContainer.querySelector(`.tab-content[data-tab="${tabId}"]`).classList.add('active');
+                        }
+                    } else {
+                        group.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Toggle button switching
+            if (e.target.classList.contains('toggle-btn') || e.target.closest('.toggle-btn')) {
+                const btn = e.target.classList.contains('toggle-btn') ? e.target : e.target.closest('.toggle-btn');
+                const tabId = btn.dataset.tab;
+                const tabsContainer = btn.closest('.solution-tabs');
+
+                // Update toggle buttons in the visible group only
+                const activeGroup = tabsContainer.querySelector('.toggle-group:not(.hidden)');
+                activeGroup.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
 
                 // Update content
                 tabsContainer.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
