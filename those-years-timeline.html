@@ -1208,8 +1208,6 @@
             font-weight: 600;
             color: #888;
             margin-bottom: 16px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .problem-tab-column video,
@@ -2942,6 +2940,10 @@
             if (e.target.classList.contains('problem-tab-btn')) {
                 const tabId = e.target.dataset.tab;
                 const tabsSection = e.target.closest('.problem-tabs-section');
+                const drawer = document.getElementById('drawer');
+
+                // Save scroll position
+                const scrollTop = drawer.scrollTop;
 
                 // Update buttons
                 tabsSection.querySelectorAll('.problem-tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -2950,6 +2952,9 @@
                 // Update content
                 tabsSection.querySelectorAll('.problem-tab-content').forEach(content => content.classList.remove('active'));
                 tabsSection.querySelector(`.problem-tab-content[data-tab="${tabId}"]`).classList.add('active');
+
+                // Restore scroll position
+                drawer.scrollTop = scrollTop;
             }
         });
 
