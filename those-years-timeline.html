@@ -925,7 +925,12 @@
             transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             z-index: 100;
             overflow-y: auto;
+            overscroll-behavior: contain;
             box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+
+        body.drawer-open {
+            overflow: hidden;
         }
 
         body.drawer-open .drawer {
@@ -936,7 +941,10 @@
         .drawer-header {
             padding: 40px 64px;
             border-bottom: 1px solid #E8E8E8;
-            position: relative;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
         }
 
         .drawer-label {
