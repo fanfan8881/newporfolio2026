@@ -1118,31 +1118,57 @@
             padding-top: 6px;
         }
 
-        /* Project Type Section */
-        .project-type-card {
-            margin-bottom: 24px;
-            padding: 40px;
-            background: #F8F8F6;
-            border: 1px solid var(--deep-charcoal);
-            cursor: pointer;
+        /* Problem Tabs Section */
+        .problem-tabs-section {
+            padding-bottom: 0;
         }
 
-        .project-type-card::after {
+        .problem-tabs-section::after {
             display: none;
         }
 
-        .project-type-card:last-child {
-            margin-bottom: 0;
-        }
-
-        .project-type-header {
+        .problem-tabs-buttons {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+            gap: 12px;
             margin-bottom: 24px;
         }
 
-        .project-type-tag {
+        .problem-tab-btn {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--deep-charcoal);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--deep-charcoal);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .problem-tab-btn:hover {
+            background: #f5f5f5;
+        }
+
+        .problem-tab-btn.active {
+            background: var(--deep-charcoal);
+            color: white;
+        }
+
+        .problem-tab-content {
+            display: none;
+            padding: 32px;
+            background: #F8F8F6;
+            border: 1px solid var(--deep-charcoal);
+        }
+
+        .problem-tab-content.active {
+            display: block;
+        }
+
+        .problem-tab-label {
             display: inline-block;
             background: #FFCAB8;
             border: 1px solid var(--deep-charcoal);
@@ -1152,27 +1178,10 @@
             letter-spacing: 1px;
             text-transform: uppercase;
             color: var(--deep-charcoal);
+            margin-bottom: 24px;
         }
 
-        .project-type-toggle {
-            width: 40px;
-            height: 40px;
-            border: 1px solid var(--deep-charcoal);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            color: var(--deep-charcoal);
-            transition: transform 0.3s ease;
-            flex-shrink: 0;
-            background: transparent;
-        }
-
-        .project-type-card.expanded .project-type-toggle {
-            transform: rotate(180deg);
-        }
-
-        .project-type-quote {
+        .problem-tab-quote {
             font-family: 'DM Sans', sans-serif;
             font-size: 26px;
             font-weight: 600;
@@ -1181,22 +1190,10 @@
             margin-bottom: 12px;
         }
 
-        .project-type-description {
+        .problem-tab-description {
             font-size: 16px;
             line-height: 1.6;
             color: #666;
-        }
-
-        .project-type-expanded {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, margin-top 0.3s ease;
-            margin-top: 0;
-        }
-
-        .project-type-card.expanded .project-type-expanded {
-            max-height: 1000px;
-            margin-top: 28px;
         }
 
         /* Section Header (centered, large) */
@@ -2490,22 +2487,27 @@
                         title: 'Typical problems I tackled/am tackling'
                     },
                     {
-                        type: 'project-type',
-                        tag: 'Type 1 – From customer intent to product primitives',
-                        quote: '"Customer A has this approval case, let us make it happen"',
-                        description: 'You may think it sounds like product manager work, what can we do as a designer?'
-                    },
-                    {
-                        type: 'project-type',
-                        tag: 'Type 2 – Reducing the need for deep expertise',
-                        quote: '"What users built look so bad. We want them to build beautiful apps"',
-                        description: 'We all know we should make users easy to build great outcome. But how? and what is hard, what is bad?'
-                    },
-                    {
-                        type: 'project-type',
-                        tag: 'Type 3 – Holding the lines, small things but matters',
-                        quote: '"I saw at least 10 users say they want to be able to multi-select, let us do it"',
-                        description: 'Is that the right way to do?'
+                        type: 'problem-tabs',
+                        items: [
+                            {
+                                id: '1',
+                                label: 'From customer intent to product primitives',
+                                quote: '"Customer A has this approval case, let us make it happen"',
+                                description: 'You may think it sounds like product manager work, what can we do as a designer?'
+                            },
+                            {
+                                id: '2',
+                                label: 'Reducing the need for deep expertise',
+                                quote: '"What users built look so bad. We want them to build beautiful apps"',
+                                description: 'We all know we should make users easy to build great outcome. But how? and what is hard, what is bad?'
+                            },
+                            {
+                                id: '3',
+                                label: 'Holding the lines, small things but matters',
+                                quote: '"I saw at least 10 users say they want to be able to multi-select, let us do it"',
+                                description: 'Is that the right way to do?'
+                            }
+                        ]
                     }
                 ]
             },
@@ -2722,21 +2724,21 @@
                             <h2 class="section-header-title">${section.title}</h2>
                         </div>
                     `;
-                } else if (section.type === 'project-type') {
-                    const expandableHtml = section.expandedContent ? `
-                        <div class="project-type-expanded">
-                            ${section.expandedContent}
-                        </div>
-                    ` : '';
+                } else if (section.type === 'problem-tabs') {
                     html += `
-                        <div class="drawer-section project-type-card" onclick="this.classList.toggle('expanded')">
-                            <div class="project-type-header">
-                                <div class="project-type-tag">${section.tag}</div>
-                                <span class="project-type-toggle">▼</span>
+                        <div class="drawer-section problem-tabs-section">
+                            <div class="problem-tabs-buttons">
+                                ${section.items.map((item, i) => `
+                                    <button class="problem-tab-btn ${i === 0 ? 'active' : ''}" data-tab="${item.id}">${item.id}</button>
+                                `).join('')}
                             </div>
-                            <h3 class="project-type-quote">${section.quote}</h3>
-                            <p class="project-type-description">${section.description}</p>
-                            ${expandableHtml}
+                            ${section.items.map((item, i) => `
+                                <div class="problem-tab-content ${i === 0 ? 'active' : ''}" data-tab="${item.id}">
+                                    <div class="problem-tab-label">${item.label}</div>
+                                    <h3 class="problem-tab-quote">${item.quote}</h3>
+                                    <p class="problem-tab-description">${item.description}</p>
+                                </div>
+                            `).join('')}
                         </div>
                     `;
                 }
@@ -2845,6 +2847,20 @@
                 // Update content
                 tabsContainer.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
                 tabsContainer.querySelector(`.tab-content[data-tab="${tabId}"]`).classList.add('active');
+            }
+
+            // Problem tabs switching
+            if (e.target.classList.contains('problem-tab-btn')) {
+                const tabId = e.target.dataset.tab;
+                const tabsSection = e.target.closest('.problem-tabs-section');
+
+                // Update buttons
+                tabsSection.querySelectorAll('.problem-tab-btn').forEach(btn => btn.classList.remove('active'));
+                e.target.classList.add('active');
+
+                // Update content
+                tabsSection.querySelectorAll('.problem-tab-content').forEach(content => content.classList.remove('active'));
+                tabsSection.querySelector(`.problem-tab-content[data-tab="${tabId}"]`).classList.add('active');
             }
         });
 
