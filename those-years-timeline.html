@@ -240,7 +240,6 @@
 
         body.drawer-open .main-content {
             width: 40%;
-            opacity: 0.5;
         }
 
         /* Section Header */
@@ -401,6 +400,16 @@
         .diagonal-accent.mint { background: var(--mint-green); }
         .diagonal-accent.coral { background: var(--soft-coral); }
         .diagonal-accent.lavender { background: var(--lavender); }
+
+        /* Dim non-active cards when drawer is open */
+        body.drawer-open .milestone-card .diagonal-accent {
+            opacity: 0.2;
+        }
+
+        body.drawer-open .milestone-card.active .diagonal-accent,
+        body.drawer-open .milestone-card:hover .diagonal-accent {
+            opacity: 1;
+        }
 
         /* Content Grid */
         .content-grid {
