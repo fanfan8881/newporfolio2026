@@ -1225,6 +1225,16 @@
             }
         }
 
+        .problem-tab-image {
+            margin-top: 32px;
+        }
+
+        .problem-tab-image img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #E0E0E0;
+        }
+
         /* Section Header (centered, large) */
         .section-header {
             text-align: center;
@@ -2558,7 +2568,8 @@
                                 id: '3',
                                 label: 'Holding the lines, small things but matters',
                                 quote: '"I saw at least 10 users say they want to be able to multi-select, let us do it"',
-                                description: 'Is that the right way to do?'
+                                description: 'Is that the right way to do?',
+                                image: 'images/clear control.png'
                             }
                         ]
                     }
@@ -2802,12 +2813,18 @@
                                         `).join('')}
                                     </div>
                                 ` : '';
+                                const singleImageHtml = item.image ? `
+                                    <div class="problem-tab-image">
+                                        <img src="${item.image}" alt="">
+                                    </div>
+                                ` : '';
                                 return `
                                     <div class="problem-tab-content ${i === 0 ? 'active' : ''}" data-tab="${item.id}">
                                         <div class="problem-tab-label">${item.label}</div>
                                         <h3 class="problem-tab-quote">${item.quote}</h3>
                                         <p class="problem-tab-description">${item.description}</p>
                                         ${columnsHtml}
+                                        ${singleImageHtml}
                                     </div>
                                 `;
                             }).join('')}
