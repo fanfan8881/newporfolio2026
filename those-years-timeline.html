@@ -1196,6 +1196,35 @@
             color: #666;
         }
 
+        .problem-tab-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 32px;
+        }
+
+        .problem-tab-column-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #888;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .problem-tab-column video,
+        .problem-tab-column img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #E0E0E0;
+        }
+
+        @media (max-width: 768px) {
+            .problem-tab-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Section Header (centered, large) */
         .section-header {
             text-align: center;
@@ -2493,7 +2522,19 @@
                                 id: '1',
                                 label: 'From customer intent to product primitives',
                                 quote: '"Customer A has this approval case, let us make it happen"',
-                                description: 'You may think it sounds like product manager work, what can we do as a designer?'
+                                description: 'You may think it sounds like product manager work, what can we do as a designer?',
+                                columns: [
+                                    {
+                                        title: 'What was the clue',
+                                        type: 'video',
+                                        src: 'videos/Approval flow.mp4'
+                                    },
+                                    {
+                                        title: 'The primitives generated',
+                                        type: 'image',
+                                        src: 'images/approval-flow-feature.png'
+                                    }
+                                ]
                             },
                             {
                                 id: '2',
@@ -2732,13 +2773,32 @@
                                     <button class="problem-tab-btn ${i === 0 ? 'active' : ''}" data-tab="${item.id}">${item.id}</button>
                                 `).join('')}
                             </div>
-                            ${section.items.map((item, i) => `
-                                <div class="problem-tab-content ${i === 0 ? 'active' : ''}" data-tab="${item.id}">
-                                    <div class="problem-tab-label">${item.label}</div>
-                                    <h3 class="problem-tab-quote">${item.quote}</h3>
-                                    <p class="problem-tab-description">${item.description}</p>
-                                </div>
-                            `).join('')}
+                            ${section.items.map((item, i) => {
+                                const columnsHtml = item.columns ? `
+                                    <div class="problem-tab-columns">
+                                        ${item.columns.map(col => `
+                                            <div class="problem-tab-column">
+                                                <p class="problem-tab-column-title">${col.title}</p>
+                                                ${col.type === 'video' ? `
+                                                    <video autoplay loop muted playsinline>
+                                                        <source src="${col.src}" type="video/mp4">
+                                                    </video>
+                                                ` : `
+                                                    <img src="${col.src}" alt="${col.title}">
+                                                `}
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                ` : '';
+                                return `
+                                    <div class="problem-tab-content ${i === 0 ? 'active' : ''}" data-tab="${item.id}">
+                                        <div class="problem-tab-label">${item.label}</div>
+                                        <h3 class="problem-tab-quote">${item.quote}</h3>
+                                        <p class="problem-tab-description">${item.description}</p>
+                                        ${columnsHtml}
+                                    </div>
+                                `;
+                            }).join('')}
                         </div>
                     `;
                 }
