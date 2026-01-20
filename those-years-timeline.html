@@ -1085,6 +1085,68 @@
             padding-top: 6px;
         }
 
+        /* Stat Card - neo-brutalist style */
+        .stat-card {
+            background: #F8F8F6;
+            border: 1px solid var(--deep-charcoal);
+            padding: 28px;
+        }
+
+        .stat-card-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--deep-charcoal);
+            margin-bottom: 8px;
+        }
+
+        .stat-card-source {
+            font-size: 14px;
+            color: #888;
+        }
+
+        /* Problem Section */
+        .problem-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--deep-charcoal);
+            margin-bottom: 32px;
+            line-height: 1.3;
+        }
+
+        .problem-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .problem-column-header {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--deep-charcoal);
+            margin-bottom: 12px;
+        }
+
+        .problem-column-list {
+            list-style: disc;
+            padding-left: 18px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .problem-column-list li {
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .problem-columns {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
         /* ================================ */
         /* RESPONSIVE                       */
         /* ================================ */
@@ -1849,12 +1911,27 @@
                         content: 'Analytics teams generate valuable insights, but most end users don\'t engage with them. With enterprise analytics adoption hovering around 30%, data often fails to show up where decisions are actually made—resulting in wasted effort and declining trust in analytics.'
                     },
                     {
-                        type: 'feature',
-                        title: 'Enterprise analytics adoption is only around 30%.',
-                        description: '— from Gartner report',
-                        features: [
-                            { icon: '⚡', label: 'Proactive Alerts' },
-                            { icon: '📍', label: 'In-Situ Metrics' }
+                        type: 'stat-card',
+                        stat: 'Enterprise analytics adoption is only around 30%.',
+                        source: '— from Gartner report'
+                    },
+                    {
+                        type: 'problem',
+                        label: 'The user problem',
+                        title: 'The cognitive effort outweighs the value',
+                        columns: [
+                            {
+                                header: 'Time-consuming',
+                                items: ['loading...', 'find THE cell from millions, and 5 pages']
+                            },
+                            {
+                                header: 'Requires expertise',
+                                items: ['🥴 what people see → Scatter plot, Dual axis chart', '🥳 what people can understand → KPI, ring']
+                            },
+                            {
+                                header: 'Scattered information',
+                                items: ['I need to see the dashboard while looking at sheet, salesforce, etc. app.']
+                            }
                         ]
                     },
                     {
@@ -1978,6 +2055,32 @@
                                         </div>
                                     `).join('')}
                                 </div>
+                            </div>
+                        </div>
+                    `;
+                } else if (section.type === 'stat-card') {
+                    html += `
+                        <div class="drawer-section">
+                            <div class="stat-card">
+                                <p class="stat-card-text">${section.stat}</p>
+                                <p class="stat-card-source">${section.source}</p>
+                            </div>
+                        </div>
+                    `;
+                } else if (section.type === 'problem') {
+                    html += `
+                        <div class="drawer-section">
+                            <p class="drawer-section-label">${section.label}</p>
+                            <h3 class="problem-title">${section.title}</h3>
+                            <div class="problem-columns">
+                                ${section.columns.map(col => `
+                                    <div class="problem-column">
+                                        <h4 class="problem-column-header">${col.header}</h4>
+                                        <ul class="problem-column-list">
+                                            ${col.items.map(item => `<li>${item}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                `).join('')}
                             </div>
                         </div>
                     `;
