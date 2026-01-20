@@ -1118,6 +1118,56 @@
             padding-top: 6px;
         }
 
+        /* Project Type Section */
+        .project-type-card {
+            margin-bottom: 48px;
+            padding-bottom: 0;
+        }
+
+        .project-type-card::after {
+            display: none;
+        }
+
+        .project-type-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .project-type-tag {
+            display: inline-block;
+            background: #FFCAB8;
+            padding: 8px 14px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--deep-charcoal);
+            margin-bottom: 20px;
+        }
+
+        .project-type-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--deep-charcoal);
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .project-type-description {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        /* Empty text section (label only) */
+        .drawer-section:has(.drawer-section-text:empty) {
+            margin-bottom: 32px;
+            padding-bottom: 0;
+        }
+
+        .drawer-section:has(.drawer-section-text:empty)::after {
+            display: none;
+        }
+
         /* Stat Card - neo-brutalist style */
         .stat-card {
             background: #F8F8F6;
@@ -2276,29 +2326,55 @@
                 ]
             },
             '2022': {
-                title: '2022: Data Applications',
+                title: 'Make data fluid',
+                eyebrow: '2022 • Sigma • Data App',
                 sections: [
                     {
                         type: 'text',
-                        label: 'The Challenge',
-                        content: 'Analytics was still read-only. Users could see insights but couldn\'t act on them without switching to other tools. The feedback loop between insight and action was broken.'
+                        label: 'Where the idea came from',
+                        content: 'Sigma as a platform, enables non-coders to build apps with their own data and logic.'
                     },
                     {
-                        type: 'feature',
-                        title: 'Write-Back Capability',
-                        description: 'We enabled data apps that don\'t just display information—they let users take action. Approve budgets, update forecasts, trigger workflows, all from within the analytics interface.',
-                        features: [
-                            { icon: '✏️', label: 'Input Controls' },
-                            { icon: '🔄', label: 'Write-Back Actions' }
+                        type: 'role',
+                        label: 'My role',
+                        title: 'Founding designer → Design lead',
+                        columns: [
+                            {
+                                header: 'Product',
+                                items: ['from write back → action → UI components & layout']
+                            },
+                            {
+                                header: 'Design team',
+                                items: ['IC Sole designer → Design lead across 4 teams (I do hands-on works too)']
+                            },
+                            {
+                                header: 'Team expansion',
+                                items: ['from 1 team to 4 teams']
+                            }
                         ]
                     },
                     {
-                        type: 'outcomes',
-                        label: 'Outcome',
-                        items: [
-                            'Replaced 12 separate workflow tools with unified data apps.',
-                            'Cut decision-to-action time from days to minutes.'
-                        ]
+                        type: 'text',
+                        label: 'Typical problems I tackled/tackling',
+                        content: ''
+                    },
+                    {
+                        type: 'project-type',
+                        tag: 'Project type 1 – From customer intent to product primitives',
+                        quote: '"Customer A has this approval case, let us make it happen"',
+                        description: 'You may think it sounds like product manager work, what can we do as a designer?'
+                    },
+                    {
+                        type: 'project-type',
+                        tag: 'Project type 2 – Reducing the need for deep expertise',
+                        quote: '"What users built look so bad. We want them to build beautiful apps"',
+                        description: 'We all know we should make users easy to build great outcome. But how? and what is hard, what is bad?'
+                    },
+                    {
+                        type: 'project-type',
+                        tag: 'Project type 3 – Holding the lines, small things but matters',
+                        quote: '"I saw at least 10 users say they want to be able to multi-select, let us do it"',
+                        description: 'Is that the right way to do?'
                     }
                 ]
             },
@@ -2494,6 +2570,14 @@
                                     </div>
                                 `).join('')}
                             </div>
+                        </div>
+                    `;
+                } else if (section.type === 'project-type') {
+                    html += `
+                        <div class="drawer-section project-type-card">
+                            <div class="project-type-tag">${section.tag}</div>
+                            <h3 class="project-type-quote">${section.quote}</h3>
+                            <p class="project-type-description">${section.description}</p>
                         </div>
                     `;
                 }
