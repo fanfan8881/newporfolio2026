@@ -402,12 +402,13 @@
         .diagonal-accent.lavender { background: var(--lavender); }
 
         /* Dim non-active cards when drawer is open */
-        body.drawer-open .milestone-card .diagonal-accent {
-            opacity: 0.2;
+        body.drawer-open .milestone-card {
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
         }
 
-        body.drawer-open .milestone-card.active .diagonal-accent,
-        body.drawer-open .milestone-card:hover .diagonal-accent {
+        body.drawer-open .milestone-card.active,
+        body.drawer-open .milestone-card:hover {
             opacity: 1;
         }
 
