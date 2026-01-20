@@ -1330,6 +1330,65 @@
             height: auto;
         }
 
+        /* Work Areas (4-column layout with vertical lines) */
+        .work-areas {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+            padding: 40px;
+            background: #FDF8F4;
+            border-radius: 0;
+        }
+
+        .work-area {
+            position: relative;
+        }
+
+        .work-area-header {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--deep-charcoal);
+            margin-bottom: 8px;
+        }
+
+        .work-area-subtitle {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .work-area-line {
+            width: 2px;
+            height: 24px;
+            background: var(--deep-charcoal);
+            margin-bottom: 16px;
+        }
+
+        .work-area-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .work-area-description strong {
+            color: var(--deep-charcoal);
+            font-weight: 600;
+        }
+
+        @media (max-width: 1024px) {
+            .work-areas {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .work-areas {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
+
         /* Tab Component */
         .solution-tabs {
             margin-top: 32px;
@@ -2332,7 +2391,7 @@
                     {
                         type: 'stat-card',
                         stat: 'Sigma as a platform, enables non-coders to build apps with their own data and logic.',
-                        source: '— Where the idea came from'
+                        source: '— Our Mission'
                     },
                     {
                         type: 'role',
@@ -2350,6 +2409,28 @@
                             {
                                 header: 'Team expansion',
                                 items: ['from 1 team to 4 teams']
+                            }
+                        ],
+                        workAreas: [
+                            {
+                                header: 'Model',
+                                subtitle: 'Write back – Input table',
+                                description: '<strong>This is where the work started.</strong><br><br>I set up the <strong>data foundation</strong> and helped a mid-level designer drive the project.'
+                            },
+                            {
+                                header: 'View',
+                                subtitle: 'Data display – Components',
+                                description: 'I worked with senior designers on <strong>vision and problem framing</strong>'
+                            },
+                            {
+                                header: 'Controller',
+                                subtitle: 'Interaction, Logics – Actions',
+                                description: 'I shaped <strong>interaction patterns</strong> and <strong>system behavior</strong>, from logic to <strong>pixel-level details</strong>, while helping junior designers grow along the way.'
+                            },
+                            {
+                                header: 'Governance',
+                                subtitle: 'Permission in app context',
+                                description: 'I rethought <strong>permission models</strong> for a new product era—balancing <strong>flexibility, safety, and scale</strong> across different use cases.'
                             }
                         ]
                     },
@@ -2479,6 +2560,18 @@
                             <img src="${section.image}" alt="Role illustration" class="role-img">
                         </div>
                     ` : '';
+                    const workAreasHtml = section.workAreas ? `
+                        <div class="work-areas">
+                            ${section.workAreas.map(area => `
+                                <div class="work-area">
+                                    <h4 class="work-area-header">${area.header}</h4>
+                                    <p class="work-area-subtitle">${area.subtitle}</p>
+                                    <div class="work-area-line"></div>
+                                    <p class="work-area-description">${area.description}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : '';
                     html += `
                         <div class="drawer-section">
                             <p class="drawer-section-label">${section.label}</p>
@@ -2493,6 +2586,7 @@
                                     </div>
                                 `).join('')}
                             </div>
+                            ${workAreasHtml}
                             ${roleImageHtml}
                         </div>
                     `;
