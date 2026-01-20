@@ -408,8 +408,18 @@
             transition: opacity 0.3s ease;
         }
 
+        body.drawer-open .milestone-card .diagonal-accent {
+            opacity: 0.2;
+            transition: opacity 0.3s ease;
+        }
+
         body.drawer-open .milestone-card.active,
         body.drawer-open .milestone-card:hover {
+            opacity: 1;
+        }
+
+        body.drawer-open .milestone-card.active .diagonal-accent,
+        body.drawer-open .milestone-card:hover .diagonal-accent {
             opacity: 1;
         }
 
