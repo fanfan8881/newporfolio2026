@@ -2178,7 +2178,7 @@
                             consumption: [
                                 { id: 'web', label: 'Web', icon: '🌐', video: 'videos/web.mp4' },
                                 { id: 'outlook', label: 'Outlook', icon: '📧', video: 'videos/outlook-ezgif.com-gif-to-mp4-converter.mp4' },
-                                { id: 'mobile', label: 'Mobile', icon: '📱', video: 'videos/on mobile.mp4' }
+                                { id: 'mobile', label: 'Mobile', icon: '📱', video: 'videos/on mobile.mp4', size: '50%' }
                             ],
                             authoring: [
                                 { id: 'authoring', label: 'Authoring', icon: '✏️', video: 'videos/Authoring-create card.mp4' }
@@ -2420,7 +2420,7 @@
                                     ${allTabs.map((tab, i) => `
                                         <div class="tab-content ${i === 0 ? 'active' : ''}" data-tab="${tab.id}">
                                             ${tab.video ? `
-                                                <video class="tab-video" autoplay loop muted playsinline>
+                                                <video class="tab-video" autoplay loop muted playsinline style="${tab.size ? `max-width: ${tab.size}` : ''}">
                                                     <source src="${tab.video}" type="video/mp4">
                                                 </video>
                                             ` : `
