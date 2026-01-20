@@ -1840,17 +1840,18 @@
                 ]
             },
             '2018': {
-                title: '2018: Contextual Insights',
+                title: 'Make data insights find people',
+                eyebrow: '2018 • MicroStrategy • HyperIntelligence',
                 sections: [
                     {
                         type: 'text',
                         label: 'The Challenge',
-                        content: 'By 2018, we realized that building better dashboards wasn\'t enough. The average business user didn\'t have time to go looking for data. Adoption was stalling because the "pull" model of analytics required too much intent.'
+                        content: 'Analytics teams generate valuable insights, but most end users don\'t engage with them. With enterprise analytics adoption hovering around 30%, data often fails to show up where decisions are actually made—resulting in wasted effort and declining trust in analytics.'
                     },
                     {
                         type: 'feature',
-                        title: 'Zero-Click Philosophy',
-                        description: 'We shifted the paradigm from "Users find data" to "Data finds users." This meant embedding micro-visualizations directly into the tools people already use—Slack, Email, and internal CRM systems.',
+                        title: 'Enterprise analytics adoption is only around 30%.',
+                        description: '— from Gartner report',
                         features: [
                             { icon: '⚡', label: 'Proactive Alerts' },
                             { icon: '📍', label: 'In-Situ Metrics' }
@@ -2023,6 +2024,14 @@
 
             document.getElementById('drawerTitle').textContent = data.title;
             document.getElementById('drawerBody').innerHTML = buildDrawerContent(cardId);
+
+            // Set eyebrow if available
+            const drawerLabel = document.querySelector('.drawer-label');
+            if (data.eyebrow) {
+                drawerLabel.textContent = data.eyebrow;
+            } else {
+                drawerLabel.textContent = 'Deep Dive';
+            }
 
             // Remove active from all cards, then add to current
             document.querySelectorAll('.milestone-card.clickable').forEach(c => c.classList.remove('active'));
