@@ -1127,6 +1127,10 @@
             cursor: pointer;
         }
 
+        .project-type-card.no-expand {
+            cursor: default;
+        }
+
         .project-type-card::after {
             display: none;
         }
@@ -1139,6 +1143,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
+            margin-bottom: 24px;
         }
 
         .project-type-tag {
@@ -1171,18 +1176,6 @@
             transform: rotate(180deg);
         }
 
-        .project-type-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, margin-top 0.3s ease;
-            margin-top: 0;
-        }
-
-        .project-type-card.expanded .project-type-content {
-            max-height: 500px;
-            margin-top: 28px;
-        }
-
         .project-type-quote {
             font-family: 'DM Sans', sans-serif;
             font-size: 26px;
@@ -1196,6 +1189,18 @@
             font-size: 16px;
             line-height: 1.6;
             color: #666;
+        }
+
+        .project-type-expanded {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, margin-top 0.3s ease;
+            margin-top: 0;
+        }
+
+        .project-type-card.expanded .project-type-expanded {
+            max-height: 1000px;
+            margin-top: 28px;
         }
 
         /* Section Header (centered, large) */
@@ -2722,16 +2727,21 @@
                         </div>
                     `;
                 } else if (section.type === 'project-type') {
+                    const hasExpandedContent = section.expandedContent ? true : false;
+                    const expandableHtml = hasExpandedContent ? `
+                        <div class="project-type-expanded">
+                            ${section.expandedContent}
+                        </div>
+                    ` : '';
                     html += `
-                        <div class="drawer-section project-type-card" onclick="this.classList.toggle('expanded')">
+                        <div class="drawer-section project-type-card${hasExpandedContent ? '' : ' no-expand'}" ${hasExpandedContent ? 'onclick="this.classList.toggle(\'expanded\')"' : ''}>
                             <div class="project-type-header">
                                 <div class="project-type-tag">${section.tag}</div>
-                                <span class="project-type-toggle">▼</span>
+                                ${hasExpandedContent ? '<span class="project-type-toggle">▼</span>' : ''}
                             </div>
-                            <div class="project-type-content">
-                                <h3 class="project-type-quote">${section.quote}</h3>
-                                <p class="project-type-description">${section.description}</p>
-                            </div>
+                            <h3 class="project-type-quote">${section.quote}</h3>
+                            <p class="project-type-description">${section.description}</p>
+                            ${expandableHtml}
                         </div>
                     `;
                 }
