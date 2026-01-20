@@ -616,7 +616,8 @@
 
         .feature-block {
             background: #F8F8F6;
-            border-radius: 8px;
+            border: 1px solid var(--deep-charcoal);
+            border-radius: 0;
             padding: 24px 16px;
             display: flex;
             flex-direction: column;
@@ -624,13 +625,7 @@
             justify-content: center;
             text-align: center;
             gap: 12px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
             min-height: 120px;
-        }
-
-        .feature-block:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
         .feature-block-icon {
