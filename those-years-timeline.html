@@ -245,6 +245,7 @@
         /* Section Header */
         .section-header {
             padding: 80px 60px 50px;
+            padding-left: 140px; /* Align with cards: 60px container + 80px timeline-track */
             max-width: 1500px;
             margin: 0 auto;
         }
@@ -894,8 +895,23 @@
             height: 40px;
         }
 
+        body.drawer-open .hero-section {
+            padding: 50px 30px;
+            padding-left: 70px; /* Align with cards: 30px container + 40px timeline-track */
+            display: block;
+        }
+
+        body.drawer-open .hero-content {
+            max-width: 100%;
+        }
+
+        body.drawer-open .profile-card {
+            display: none;
+        }
+
         body.drawer-open .section-header {
             padding: 50px 30px 30px;
+            padding-left: 70px; /* Align with cards: 30px container + 40px timeline-track */
         }
 
         body.drawer-open .section-title-main {
