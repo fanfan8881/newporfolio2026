@@ -1127,10 +1127,6 @@
             cursor: pointer;
         }
 
-        .project-type-card.no-expand {
-            cursor: default;
-        }
-
         .project-type-card::after {
             display: none;
         }
@@ -2727,17 +2723,16 @@
                         </div>
                     `;
                 } else if (section.type === 'project-type') {
-                    const hasExpandedContent = section.expandedContent ? true : false;
-                    const expandableHtml = hasExpandedContent ? `
+                    const expandableHtml = section.expandedContent ? `
                         <div class="project-type-expanded">
                             ${section.expandedContent}
                         </div>
                     ` : '';
                     html += `
-                        <div class="drawer-section project-type-card${hasExpandedContent ? '' : ' no-expand'}" ${hasExpandedContent ? 'onclick="this.classList.toggle(\'expanded\')"' : ''}>
+                        <div class="drawer-section project-type-card" onclick="this.classList.toggle('expanded')">
                             <div class="project-type-header">
                                 <div class="project-type-tag">${section.tag}</div>
-                                ${hasExpandedContent ? '<span class="project-type-toggle">▼</span>' : ''}
+                                <span class="project-type-toggle">▼</span>
                             </div>
                             <h3 class="project-type-quote">${section.quote}</h3>
                             <p class="project-type-description">${section.description}</p>
