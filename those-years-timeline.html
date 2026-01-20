@@ -1346,11 +1346,13 @@
             display: block;
         }
 
-        .tab-image {
+        .tab-image,
+        .tab-video {
             width: 100%;
             max-width: 100%;
             border: 1px solid #E5E5E5;
             border-radius: 0;
+            display: block;
         }
 
         @media (max-width: 768px) {
@@ -2151,7 +2153,7 @@
                                 items: ['I need to see the dashboard while looking at sheet, salesforce, etc. app.']
                             }
                         ],
-                        illustrationImage: 'images/image-21.png'
+                        illustrationImage: 'images/image 21.png'
                     },
                     {
                         type: 'solution',
@@ -2174,12 +2176,12 @@
                         tabs: {
                             segments: ['Consumption', 'Authoring'],
                             consumption: [
-                                { id: 'web', label: 'Web', icon: '🌐', image: 'images/image-02.png' },
-                                { id: 'outlook', label: 'Outlook', icon: '📧', image: 'images/image-03.png' },
-                                { id: 'mobile', label: 'Mobile', icon: '📱', image: 'images/image-04.png' }
+                                { id: 'web', label: 'Web', icon: '🌐', video: 'videos/web.mp4' },
+                                { id: 'outlook', label: 'Outlook', icon: '📧', video: 'videos/outlook-ezgif.com-gif-to-mp4-converter.mp4' },
+                                { id: 'mobile', label: 'Mobile', icon: '📱', video: 'videos/on mobile.mp4' }
                             ],
                             authoring: [
-                                { id: 'authoring', label: 'Authoring', icon: '✏️', image: 'images/image-05.png' }
+                                { id: 'authoring', label: 'Authoring', icon: '✏️', video: 'videos/Authoring-create card.mp4' }
                             ]
                         }
                     },
@@ -2201,7 +2203,7 @@
                                 items: ['team: 1 PM + 1 Senior Eng + me → 80 people across 4 products']
                             }
                         ],
-                        image: 'images/image-22.png'
+                        image: 'images/image22.png'
                     },
                     {
                         type: 'outcomes',
@@ -2417,7 +2419,13 @@
                                 <div class="tab-contents">
                                     ${allTabs.map((tab, i) => `
                                         <div class="tab-content ${i === 0 ? 'active' : ''}" data-tab="${tab.id}">
-                                            <img src="${tab.image}" alt="${tab.label}" class="tab-image">
+                                            ${tab.video ? `
+                                                <video class="tab-video" autoplay loop muted playsinline>
+                                                    <source src="${tab.video}" type="video/mp4">
+                                                </video>
+                                            ` : `
+                                                <img src="${tab.image}" alt="${tab.label}" class="tab-image">
+                                            `}
                                         </div>
                                     `).join('')}
                                 </div>
