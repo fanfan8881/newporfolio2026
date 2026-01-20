@@ -985,15 +985,43 @@
         /* Section */
         .drawer-section {
             margin-bottom: 72px;
+            padding-bottom: 72px;
+            position: relative;
+        }
+
+        .drawer-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: #E0E0E0;
         }
 
         .drawer-section:last-child {
             margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .drawer-section:last-child::after {
+            display: none;
         }
 
         /* Challenge text section has smaller spacing to stat-card below */
         .drawer-section:has(.drawer-section-text):first-child {
             margin-bottom: 24px;
+            padding-bottom: 0;
+        }
+
+        .drawer-section:has(.drawer-section-text):first-child::after {
+            display: none;
+        }
+
+        /* Stat card section - no divider after challenge */
+        .drawer-section:has(.stat-card) {
+            padding-bottom: 72px;
         }
 
         .drawer-section-label {
