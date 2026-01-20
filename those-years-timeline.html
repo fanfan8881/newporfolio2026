@@ -1238,6 +1238,15 @@
             }
         }
 
+        .role-image-container {
+            margin-top: 32px;
+        }
+
+        .role-img {
+            max-width: 100%;
+            height: auto;
+        }
+
         /* Tab Component */
         .solution-tabs {
             margin-top: 32px;
@@ -2191,7 +2200,8 @@
                                 header: 'Team expansion',
                                 items: ['team: 1 PM + 1 Senior Eng + me → 80 people across 4 products']
                             }
-                        ]
+                        ],
+                        image: 'images/image-22.png'
                     },
                     {
                         type: 'outcomes',
@@ -2353,6 +2363,11 @@
                         </div>
                     `;
                 } else if (section.type === 'role') {
+                    const roleImageHtml = section.image ? `
+                        <div class="role-image-container">
+                            <img src="${section.image}" alt="Role illustration" class="role-img">
+                        </div>
+                    ` : '';
                     html += `
                         <div class="drawer-section">
                             <p class="drawer-section-label">${section.label}</p>
@@ -2367,6 +2382,7 @@
                                     </div>
                                 `).join('')}
                             </div>
+                            ${roleImageHtml}
                         </div>
                     `;
                 } else if (section.type === 'solution') {
