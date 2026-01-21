@@ -2980,6 +2980,11 @@
             const data = drawerData[cardId];
             if (!data) return;
 
+            const activeCard = document.getElementById('card' + cardId);
+
+            // Store card's Y position before layout change
+            const cardYBefore = activeCard ? activeCard.getBoundingClientRect().top : null;
+
             document.getElementById('drawerTitle').textContent = data.title;
             document.getElementById('drawerBody').innerHTML = buildDrawerContent(cardId);
 
@@ -2993,10 +2998,20 @@
 
             // Remove active from all cards, then add to current
             document.querySelectorAll('.milestone-card.clickable').forEach(c => c.classList.remove('active'));
-            const activeCard = document.getElementById('card' + cardId);
             if (activeCard) activeCard.classList.add('active');
 
             document.body.classList.add('drawer-open');
+
+            // Maintain card's Y position after layout change
+            if (activeCard && cardYBefore !== null) {
+                requestAnimationFrame(() => {
+                    const cardYAfter = activeCard.getBoundingClientRect().top;
+                    const diff = cardYAfter - cardYBefore;
+                    if (diff !== 0) {
+                        window.scrollBy(0, diff);
+                    }
+                });
+            }
         }
 
         // Close drawer
