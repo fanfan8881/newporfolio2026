@@ -1281,6 +1281,19 @@
             border: 1px solid #E0E0E0;
         }
 
+        .problem-tab-stacked-images {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .problem-tab-stacked-images img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #E0E0E0;
+        }
+
         /* Section Header (centered, large) */
         .section-header {
             text-align: center;
@@ -2503,17 +2516,11 @@
                                 label: 'Balancing scalability vs flexibility',
                                 quote: 'Holding Principle',
                                 description: '<strong>Many choices = No choice</strong><br><br>Fewer options, but achieve best outcome.<br><br>The combination of the options can produce thousands of different designs.',
-                                columns: [
-                                    {
-                                        title: 'The challenge',
-                                        type: 'image',
-                                        src: 'images/hyperchallenge1a.png'
-                                    },
-                                    {
-                                        title: 'The approach',
-                                        type: 'image',
-                                        src: 'images/hyperchallenge1b.png'
-                                    }
+                                stackedImages: [
+                                    'images/hyperchallenge1a.png',
+                                    'images/hyperchallenge1b.png',
+                                    'images/hyperchallenge1c.png',
+                                    'images/hyperchallenge1d.png'
                                 ]
                             },
                             {
@@ -2928,6 +2935,13 @@
                                         `).join('')}
                                     </div>
                                 ` : '';
+                                const stackedImagesHtml = item.stackedImages ? `
+                                    <div class="problem-tab-stacked-images">
+                                        ${item.stackedImages.map(src => `
+                                            <img src="${src}" alt="">
+                                        `).join('')}
+                                    </div>
+                                ` : '';
                                 const singleImageHtml = item.image ? `
                                     <div class="problem-tab-image">
                                         <img src="${item.image}" alt="">
@@ -2939,6 +2953,7 @@
                                         <h3 class="problem-tab-quote">${item.quote}</h3>
                                         <p class="problem-tab-description">${item.description}</p>
                                         ${columnsHtml}
+                                        ${stackedImagesHtml}
                                         ${singleImageHtml}
                                     </div>
                                 `;
