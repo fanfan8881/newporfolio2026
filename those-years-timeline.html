@@ -1294,6 +1294,60 @@
             border: 1px solid #E0E0E0;
         }
 
+        /* Problem Tab Subsections */
+        .problem-tab-subsections {
+            margin-top: 48px;
+        }
+
+        .problem-tab-subsection {
+            margin-bottom: 32px;
+        }
+
+        .problem-tab-subsection:last-child {
+            margin-bottom: 0;
+        }
+
+        .problem-tab-subsection-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--deep-charcoal);
+            margin-bottom: 16px;
+        }
+
+        .problem-tab-subsection img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #E0E0E0;
+            margin-bottom: 16px;
+        }
+
+        .problem-tab-subsection-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .problem-tab-subsection-list li {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .problem-tab-subsection-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .problem-tab-subsection-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--deep-charcoal);
+        }
+
         /* Section Header (centered, large) */
         .section-header {
             text-align: center;
@@ -2677,6 +2731,38 @@
                                         type: 'image',
                                         src: 'images/pretty.png'
                                     }
+                                ],
+                                subsections: [
+                                    {
+                                        title: 'What does bad mean?',
+                                        image: 'images/designcritique.png'
+                                    },
+                                    {
+                                        title: 'What make things bad:',
+                                        items: [
+                                            'Hierarchy broken',
+                                            'Consistency broken',
+                                            'Alignment broken'
+                                        ]
+                                    },
+                                    {
+                                        title: 'What leads to build bad:',
+                                        items: [
+                                            'Default look outdated',
+                                            'Functions are too limited',
+                                            'Knowledge is too steep',
+                                            'And most people are not designers'
+                                        ]
+                                    },
+                                    {
+                                        title: 'Set up design principles',
+                                        items: [
+                                            'Always look good by default',
+                                            'Consistency comes naturally',
+                                            'Make "pretty" easy, make "ugly" hard',
+                                            'AI can help but users shouldn\'t have to rely solely on AI'
+                                        ]
+                                    }
                                 ]
                             },
                             {
@@ -2940,6 +3026,21 @@
                                         <img src="${item.image}" alt="">
                                     </div>
                                 ` : '';
+                                const subsectionsHtml = item.subsections ? `
+                                    <div class="problem-tab-subsections">
+                                        ${item.subsections.map(sub => `
+                                            <div class="problem-tab-subsection">
+                                                <h4 class="problem-tab-subsection-title">${sub.title}</h4>
+                                                ${sub.image ? `<img src="${sub.image}" alt="${sub.title}">` : ''}
+                                                ${sub.items ? `
+                                                    <ul class="problem-tab-subsection-list">
+                                                        ${sub.items.map(item => `<li>${item}</li>`).join('')}
+                                                    </ul>
+                                                ` : ''}
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                ` : '';
                                 return `
                                     <div class="problem-tab-content ${i === 0 ? 'active' : ''}" data-tab="${item.id}">
                                         <div class="problem-tab-label">${item.label}</div>
@@ -2948,6 +3049,7 @@
                                         ${columnsHtml}
                                         ${stackedImagesHtml}
                                         ${singleImageHtml}
+                                        ${subsectionsHtml}
                                     </div>
                                 `;
                             }).join('')}
